@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-fluid" style="margin:10px">
+        <div class="card border-warning" >
+          <div class="card-body">
+              {%  if article.photo %}
+                <img class="card-img-top" src="{{ object.photo.url }}" alt="{{ object.title }}" style="height:500px" >
+              {% endif %}
+              <h1 class="card-title">{{ article.title }}</h1>
+              <h6 class="card-subtitle mb-2 text-muted">Muallif: {{ article.author }} | {{ object.date }}</h6>
+              <p class="card-text">{{ article.body | safe}}</p>
+
+                <a href="{% url 'article_edit' object.pk %}">Tahrirlash</a> |
+                <a href="{% url 'article_delete' object.pk %}">O'chirish</a> |
+
+            <button class="btn btn-info"><a href="{% url 'article_list' %}" style="color:white">Barcha postlar</a></button>
+          </div>
+            <div class="card">
+
+
+                <div class="card-header">Izohlar
+                <button class="btn btn-warning" style="flex:right"> <a href="{% url 'add_comment_to_article' pk=article.pk %}">Add Comment</a></button>
+
+                </div>
+                {%  for comment in article.comments.all %}
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <ul>
+                           <li> <p>{{ comment }}</p></li>
+                                </ul>
+                          <footer class="blockquote-footer">Muallif🪄✒️: {{ comment.author }}</footer>
+
+                        </blockquote>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <p></p>
+    </div>
+{% endblock content %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+   Registration Page
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-primary">
+                <div class="card-header">
+                    <h3 class="text-center" style="color:black">New Registration</h3>
+                </div>
+                <div class="card-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username:</label>
+                            {{ form.username }}
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="password1" class="form-label">Password:</label>
+                            {{ form.password1 }}
+                             <small id="passwordHelp" class="form-text text-muted">Parol kamida 8 belgidan iborat bo'lishi, katta harf va kichik harf bo'lishi maxsus belgi bo'lishi kerak.</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password2" class="form-label">Confirm Password:</label>
+                            {{ form.password2 }}
+                        </div>
+                        <div id="password-error-message" class="text-danger"></div> <!-- Xato xabar uchun div -->
+                        <div class="d-grid">
+                            <input type="submit" value="Register" class="btn btn-warning btn-block">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block my_scripts %}
+<script>
+    $('input').addClass('form-control mb-2');
+    $('textarea[type=text]').addClass('form-control mb-2');
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('form').addEventListener('submit', function(event) {
+            const password1 = document.getElementById('id_password1').value;
+            const password2 = document.getElementById('id_password2').value;
+            const errorMessage = document.getElementById('password-error-message');
+            if (password1 !== password2) {
+                event.preventDefault();  // Formni yuborishni to'xtatamiz
+                errorMessage.textContent = "Parollar mos kelmadi. Iltimos, tekshiring va qayta urinib ko'ring.";
+            } else {
+                errorMessage.textContent = ""; // Xato xabarni o'chirish
+            }
+        });
+    });
+</script>
+{% endblock %}
