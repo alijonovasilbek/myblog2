@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Bosh sahifa{% endblock title %}
+
+{% block content %}
+    <br/>
+    <div class="jumbotron">
+        <h1 class="display-4">Assalomu alaykum!</h1>
+        <p class="lead">Alijonov Asilbekning shaxsiy maqola blogiga xush kelibsiz.</p>
+        <hr class="my-4">
+        <p>Bu yerda siz dasturlash va dasturchilarga oid so'nggi yangilik va maqolalardan  xabardor bo'lib turasiz.</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url 'article_list' %}" role="button">Maqolalarni ko'rish</a>
+        </p>
+
+        <!-- Telegram, Instagram va Twitter lari uchun iconlar -->
+        <div class="social-icons float-right " style="margin-top:1px;">
+            <a href="https://t.me/asilbek_ax"><img src="{% static 'images/telegram.png' %}" alt="Telegram" class="icon" style=" width: 40px;
+    height: 40px;
+    margin-right: 10px;"></a>
+            <a href="https://www.instagram.com/asilbek__ax/"><img src="{% static 'images/instagram.png' %}" alt="Instagram" class="icon" style=" width: 40px;
+    height: 40px;
+    margin-right: 10px;"></a>
+             <a href="https://x.com/asilbek18999472?s=11"><img src="{% static 'images/twitter.png' %}" alt="Instagram" class="icon" style=" width: 40px;
+    height: 40px;
+    margin-right: 10px;"></a>
+<!--            <a href="https://twitter.com/"><img src="{% static 'images/twitter.png' %}" alt="Twitter" class="icon"></a>-->
+        </div>
+    </div>
+
+{% endblock content %}
+
